@@ -12,38 +12,34 @@ class Prime extends CI_Controller
 
     public function index()
     {
-        $this->load->view('welcome_message');
+
+        if ($this->checkMaintenance()) {
+            echo "Maintenance mode";
+        } else {
+            if ($this->isSessionActive()) {
+                var_dump($this->session);
+                $this->load->view('welcome_message');
+            }
+            else{
+                $this->setMessage('Warning!', 'Login to continue', 'warning');
+                redirect('login');
+            }
+        }
+    }
+
+    public function test(){
+        var_dump(password_hash("@dm1N", PASSWORD_BCRYPT));
     }
 
 
     public function login()
     {
-
-        $this->load->view('login_view');
     }
 
     public function logout()
     {
         $this->session->sess_destroy();
         redirect(base_url());
-    }
-
-
-    protected function verifyRecaptcha()
-    {
-        $this->checkMaintenance();
-        if (ENVIRONMENT === 'development') {
-            return true;
-        }
-        if ($this->input->post('g-recaptcha-response')) {
-            $secret = 'test';
-            $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $this->input->post('g-recaptcha-response'));
-            $responseData = json_decode($verifyResponse);
-            if ($responseData->success) {
-                return true;
-            }
-        }
-        return false;
     }
 
     protected function setMessage($title, $text, $type)
@@ -63,25 +59,20 @@ class Prime extends CI_Controller
             exit;
         }
         if ($this->isSessionActive()) {
-            if (!$this->UserAccess->isAllow($this->session->userdata('user')->ID, array('DEV'))) {
-                return false;
-            }
+            return false;
         }
 
         if (ENVIRONMENT === 'development') {
             return false;
         }
 
-        if ($this->AppConfig->isMaintenance()) {
-            return true;
-        }
         return false;
     }
 
     protected function checkMaintenance()
     {
         if ($this->isMaintenance()) {
-            redirect('/');
+            redirect(base_url());
             exit;
         }
     }

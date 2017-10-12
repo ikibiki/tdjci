@@ -17,16 +17,25 @@ class UserAccount extends CI_Model {
         $this->dbi->where('username', $username);
         $res = $this->dbi->get()->result();
 
-        return password_verify($combination, $res[0]->password);
+        return empty($res)?false: password_verify($combination, $res[0]->password);
     }
 
-    public function getUserInfo($id) {
+    public function getUserAccount($id) {
         $this->dbi->reset_query();
         $this->dbi->from('users');
         $this->dbi->where('id', $id);
         $this->dbi->where('status', 1);
         return $this->dbi->get()->result()[0];
     }
+
+public function getUserInfo($username){
+
+        $this->dbi->reset_query();
+        $this->dbi->from('users');
+        $this->dbi->where('username', $username);
+        $this->dbi->where('status', 1);
+        return $this->dbi->get()->result()[0];
+}
 
     public function updateUserInfo($empid, $data) {
         $this->dbi->reset_query();
