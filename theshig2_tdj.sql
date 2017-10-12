@@ -11,12 +11,6 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
-
--- Dumping database structure for theshig2_tdj
-DROP DATABASE IF EXISTS `theshig2_tdj`;
-CREATE DATABASE IF NOT EXISTS `theshig2_tdj` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `theshig2_tdj`;
-
 -- Dumping structure for table theshig2_tdj.blockdate
 DROP TABLE IF EXISTS `blockdate`;
 CREATE TABLE IF NOT EXISTS `blockdate` (
@@ -25,8 +19,8 @@ CREATE TABLE IF NOT EXISTS `blockdate` (
   `basedate` date DEFAULT NULL,
   `timestart` time DEFAULT NULL,
   `timeend` time DEFAULT NULL,
-  `dtcreated` datetime DEFAULT CURRENT_TIMESTAMP,
-  `dtmodified` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `dt_created` timestamp NULL DEFAULT NULL,
+  `dt_modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -39,8 +33,8 @@ CREATE TABLE IF NOT EXISTS `booking` (
   `package_id` int(11) DEFAULT NULL,
   `target_date` date DEFAULT NULL,
   `target_time` time DEFAULT NULL,
-  `dt_created` datetime DEFAULT CURRENT_TIMESTAMP,
-  `dt_modified` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `dt_created` timestamp NULL DEFAULT NULL,
+  `dt_modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -48,13 +42,13 @@ CREATE TABLE IF NOT EXISTS `booking` (
 -- Dumping structure for table theshig2_tdj.child
 DROP TABLE IF EXISTS `child`;
 CREATE TABLE IF NOT EXISTS `child` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `firstname` text,
   `lastname` text,
   `birthday` date DEFAULT NULL,
   `gender` tinyint(1) DEFAULT NULL,
-  `dt_created` datetime DEFAULT CURRENT_TIMESTAMP,
-  `dt_modified` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `dt_created` timestamp NULL DEFAULT NULL,
+  `dt_modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -73,8 +67,8 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `message` longtext,
   `user_id` int(11) DEFAULT NULL,
-  `dt_created` datetime DEFAULT CURRENT_TIMESTAMP,
-  `dt_modified` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `dt_created` timestamp NULL DEFAULT NULL,
+  `dt_modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -95,9 +89,29 @@ CREATE TABLE IF NOT EXISTS `package` (
   `caption` text,
   `cost` int(11) DEFAULT NULL,
   `currency` tinytext,
-  `dt_created` datetime DEFAULT CURRENT_TIMESTAMP,
-  `dt_modified` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `dt_created` timestamp NULL DEFAULT NULL,
+  `dt_modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- Data exporting was unselected.
+-- Dumping structure for table theshig2_tdj.pet
+DROP TABLE IF EXISTS `pet`;
+CREATE TABLE IF NOT EXISTS `pet` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text CHARACTER SET latin1,
+  `birthday` date DEFAULT NULL,
+  `dt_created` timestamp NULL DEFAULT NULL,
+  `dt_modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- Data exporting was unselected.
+-- Dumping structure for table theshig2_tdj.pet_ref
+DROP TABLE IF EXISTS `pet_ref`;
+CREATE TABLE IF NOT EXISTS `pet_ref` (
+  `user_id` int(11) DEFAULT NULL,
+  `pet_id` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
@@ -108,8 +122,9 @@ CREATE TABLE IF NOT EXISTS `photos` (
   `user_id` int(11) DEFAULT NULL,
   `filename` text,
   `caption` text,
-  `dt_created` datetime DEFAULT CURRENT_TIMESTAMP,
-  `dt_modified` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `status` tinyint(1) DEFAULT NULL,
+  `dt_created` timestamp NULL DEFAULT NULL,
+  `dt_modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -126,8 +141,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` text,
   `status` tinyint(2) DEFAULT '0',
   `role` tinyint(2) DEFAULT '0',
-  `dt_created` datetime DEFAULT CURRENT_TIMESTAMP,
-  `dt_modified` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `dt_created` timestamp NULL DEFAULT NULL,
+  `dt_modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
