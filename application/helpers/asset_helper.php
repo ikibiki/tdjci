@@ -6,7 +6,9 @@ function echoStyles() {
     $css = array(
         "//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css",
         "//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css",
+
         "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css",
+
         "//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css",
         "//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css",
         "//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css",
@@ -22,9 +24,11 @@ function echoScripts() {
         "//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.js",
         "//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js",
         "//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js",
+
         "https://code.jquery.com/jquery-3.2.1.slim.min.js",
         "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js",
         "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js",
+
         "//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.5/jquery.lazy.min.js",
         "//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.5/jquery.lazy.plugins.min.js",
     );

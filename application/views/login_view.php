@@ -38,10 +38,10 @@ if (!isset($redir)) {
     $msg = $this->session->flashdata('msg');
     if ($msg) {
         ?>
-        <div class="alert alert-<?php echo $msg['type']; ?> alert-dismissible" role="alert">
+        <div class="alert alert-<?php echo $msg['type']; ?> alert-dismissible fade show" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-            <?php echo $msg['text']; ?>
+            <strong><?= $msg['title'] ?></strong> <?= $msg['text']; ?>
         </div>
         <?php
     }
@@ -69,19 +69,19 @@ if (!isset($redir)) {
             <div class="modal-body">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span
                             class="fa fa-times fa-fw fa-lg"></span></button>
-                <div class="login-form justify-content-center">
+                <div class="login-form mx-auto">
                     <br/>
                     <h1 class="text-center logo"><?= WEBSITE_TITLE ?></h1>
                     <br/>
                     <?php
-                    echo form_open($redir . '/login', 'id=frmlogin');
+                    echo form_open('login/process', 'id=frmlogin');
                     ?>
-                    <input type="hidden" name="redir" value="<?php echo $redir; ?>">
+                    <input type="hidden" name="redir" value="<?= $redir; ?>">
                     <div class="form-group">
                         <label class="control-label">Username</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="fa fa-user fa-fw fa-lg"></i></div>
-                            <input type="text" class="form-control" name="username" placeholder="Employee Number"
+                            <input type="text" class="form-control" name="username" placeholder="Username"
                                    tabindex="1" required>
                             <span></span>
                         </div>
@@ -96,7 +96,7 @@ if (!isset($redir)) {
                         </div>
                     </div>
                     <div class="form-group">
-                        <div align="center" class="g-recaptcha" data-sitekey="6LfrBwkUAAAAAC3ivdTjCTKAhXV1yALN91A0pZYW"
+                        <div align="center" class="g-recaptcha" data-sitekey="6LfO6CgUAAAAAMzWFzSVbuAVMVZ7qVsjEHzfcci-"
                              data-theme="light" data-size="normal"></div>
                     </div>
                     <div class="form-group">
