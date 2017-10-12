@@ -27,7 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $config['base_url'] = '';
 if(ENVIRONMENT=='development'){
 
-    $config['base_url'] = 'http://localhost/tdjci/';
+    $config['base_url'] = 'http://tdjci';
 }
 
 /*
