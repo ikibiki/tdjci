@@ -6,40 +6,149 @@ class Prime extends CI_Controller
 
     function __construct()
     {
-
         parent::__construct();
+        $this->load->model('UserAccount');
+
+        $this->load->library('table');
     }
 
     public function index()
     {
-
         if ($this->checkMaintenance()) {
             echo "Maintenance mode";
         } else {
             if ($this->isSessionActive()) {
-                var_dump($this->session);
-                $this->load->view('welcome_message');
-            }
-            else{
+                $this->load->view('default_app_view');
+            } else {
                 $this->setMessage('Warning!', 'Login to continue', 'warning');
                 redirect('login');
             }
         }
     }
 
-    public function test(){
+    public function test()
+    {
         var_dump(password_hash("@dm1N", PASSWORD_BCRYPT));
     }
 
-
-    public function login()
+    public function users()
     {
+        if ($this->checkMaintenance()) {
+            echo "Maintenance mode";
+        } else {
+            if ($this->isSessionActive()) {
+
+                $users = $this->UserAccount->getUsers();
+
+                $template = array(
+                    'table_open' => '<table class="table table-hover">',
+                );
+
+                $this->table->set_template($template);
+
+                $this->table->set_heading(array(
+                    'Options',
+                    'ID',
+                    'First name',
+                    'Last name',
+                    'Email',
+                    'Mobile phone',
+                    'User name',
+                    'Role',
+                ));
+
+                foreach ($users as &$item) {
+                    $this->table->add_row(array(
+                        '<a class="btn btn-small btn-warning" href="' . site_url('users') . '?edit=' . $item->id . '"><span class="fa fa-pencil"></span></a>'
+                        . form_open('process/deleteuser') .
+                        form_hidden(array('redir' => 'prime/users', 'id' => $item->id)) .
+                        '<button class="btn btn-small btn-danger" type="submit"><span class="fa fa-trash"></span></button>',
+                        $item->id,
+                        $item->firstname,
+                        $item->lastname,
+                        $item->email,
+                        $item->mobilephone,
+                        $item->username,
+                        ROLE[$item->role],
+                    ));
+                }
+
+                $userstable = $this->table->generate();
+
+                $data['userstable'] = $userstable;
+
+                $editid = $this->input->get('edit');
+
+                if (!empty($editid)) {
+                    $edit = $this->UserAccount->getUserAccount($editid);
+                    if (!empty($edit)) {
+                        $data['edit'] = $edit;
+                    }
+                }
+
+                $this->load->view('users_app_view', $data);
+            } else {
+                $this->setMessage('Warning!', 'Login to continue', 'warning');
+                redirect('login');
+            }
+        }
+    }
+
+    public function process($mode)
+    {
+        if ($this->isSessionActive()) {
+            $redir = $this->input->post('redir');
+            switch ($mode) {
+                case 'updateuser': {
+                    $id = $this->input->post('id');
+
+                    if ($id == null) {
+                        $id = -1;
+                    }
+
+                    $data = array(
+                        'firstname' => $this->input->post('firstname'),
+                        'lastname' => $this->input->post('lastname'),
+                        'email' => $this->input->post('email'),
+                        'mobilephone' => $this->input->post('mobilephone'),
+                        'username' => $this->input->post('firstname'),
+                        'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT),
+                        'status' => 1,
+                        'role' => $this->input->post('role'),
+                    );
+                    $this->UserAccount->updateUserInfo($id, $data);
+                    if ($id < 0) {
+                        $this->setMessage('Create user', 'User created!', 'info');
+                    } else {
+                        $this->setMessage('Update user', 'User updated!', 'info');
+                    }
+                }
+                    break;
+                case 'deleteuser': {
+                    {
+                        $id = $this->input->post('id');
+                        $data = array(
+                            'status' => 0,
+                        );
+                        $this->UserAccount->updateUserInfo($id, $data);
+                        $this->setMessage('Delete user', 'User deleted!', 'info');
+                    }
+                    break;
+                }
+                default:
+                    break;
+            }
+        } else {
+            $this->setMessage('Warning!', 'Login to continue', 'warning');
+            $redir = 'login';
+        }
+        redirect($redir);
     }
 
     public function logout()
     {
         $this->session->sess_destroy();
-        redirect(base_url());
+        redirect(site_url('login'));
     }
 
     protected function setMessage($title, $text, $type)

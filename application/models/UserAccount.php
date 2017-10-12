@@ -20,9 +20,17 @@ class UserAccount extends CI_Model {
         return empty($res)?false: password_verify($combination, $res[0]->password);
     }
 
+    public function getUsers() {
+            $this->dbi->reset_query();
+            $this->dbi->from('user');
+            $this->dbi->where('status', 1);
+            return $this->dbi->get()->result();
+        }
+
+
     public function getUserAccount($id) {
         $this->dbi->reset_query();
-        $this->dbi->from('users');
+        $this->dbi->from('user');
         $this->dbi->where('id', $id);
         $this->dbi->where('status', 1);
         return $this->dbi->get()->result()[0];
@@ -31,24 +39,24 @@ class UserAccount extends CI_Model {
 public function getUserInfo($username){
 
         $this->dbi->reset_query();
-        $this->dbi->from('users');
+        $this->dbi->from('user');
         $this->dbi->where('username', $username);
         $this->dbi->where('status', 1);
         return $this->dbi->get()->result()[0];
 }
 
-    public function updateUserInfo($empid, $data) {
+    public function updateUserInfo($id, $data) {
         $this->dbi->reset_query();
-        $this->dbi->where('ID', $empid);
-        $exist = $this->dbi->get("tblusers")->result();
+        $this->dbi->where('id', $id);
+        $exist = $this->dbi->get("user")->result();
 
         if ($exist) {
-            $this->dbi->where('ID', $empid);
-            $this->dbi->update('tblusers', $data);
-            return $this->empid;
+            $this->dbi->where('id', $id);
+            $this->dbi->update('user', $data);
+            return $this->id;
         } else {
             $this->dbi->reset_query();
-            $this->dbi->insert('tblusers', $data);
+            $this->dbi->insert('user', $data);
             return $this->dbi->insert_id();
         }
     }
