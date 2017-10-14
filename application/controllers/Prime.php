@@ -8,6 +8,7 @@ class Prime extends CI_Controller
     {
         parent::__construct();
         $this->load->model('UserAccount');
+        $this->load->model('BlockDate');
 
         $this->load->library('table');
     }
@@ -61,7 +62,7 @@ class Prime extends CI_Controller
                     $this->table->add_row(array(
                         '<a class="btn btn-small btn-warning" href="' . site_url('users') . '?edit=' . $item->id . '"><span class="fa fa-pencil"></span></a>'
                         . form_open('process/deleteuser') .
-                        form_hidden(array('redir' => 'prime/users', 'id' => $item->id)) .
+                        form_hidden(array('redir' => 'users', 'id' => $item->id)) .
                         '<button class="btn btn-small btn-danger" type="submit"><span class="fa fa-trash"></span></button>',
                         $item->id,
                         $item->firstname,
@@ -87,6 +88,116 @@ class Prime extends CI_Controller
                 }
 
                 $this->load->view('users_app_view', $data);
+            } else {
+                $this->setMessage('Warning!', 'Login to continue', 'warning');
+                redirect('login');
+            }
+        }
+    }
+
+    public function block()
+    {
+        if ($this->checkMaintenance()) {
+            echo "Maintenance mode";
+        } else {
+            if ($this->isSessionActive()) {
+                $user = $this->isSessionActive();
+                $blocks = $this->BlockDate->getBlocks($user->id);
+
+                $template = array(
+                    'table_open' => '<table class="table table-hover">',
+                );
+
+                $this->table->set_template($template);
+
+                $this->table->set_heading(array(
+                    'Options',
+                    'Block date',
+                    'Start time',
+                    'End time',
+                ));
+
+                foreach ($blocks as &$item) {
+                    $this->table->add_row(array(
+                        '<a class="btn btn-small btn-warning" href="' . site_url('block') . '?edit=' . $item->id . '"><span class="fa fa-pencil"></span></a>'
+                        . form_open('process/deleteblock') .
+                        form_hidden(array('redir' => 'block', 'id' => $item->id)) .
+                        '<button class="btn btn-small btn-danger" type="submit"><span class="fa fa-trash"></span></button>',
+                        $item->basedate,
+                        $item->timestart,
+                        $item->timeend,
+                    ));
+                }
+
+                $blockstable = $this->table->generate();
+
+                $data['blockstable'] = $blockstable;
+
+                $editid = $this->input->get('edit');
+
+                if (!empty($editid)) {
+                    $edit = $this->BlockDate->getBlock($editid);
+                    if (!empty($edit)) {
+                        $data['edit'] = $edit;
+                    }
+                }
+
+                $this->load->view('block_app_view', $data);
+            } else {
+                $this->setMessage('Warning!', 'Login to continue', 'warning');
+                redirect('login');
+            }
+        }
+    }
+
+    public function photopack()
+    {
+        if ($this->checkMaintenance()) {
+            echo "Maintenance mode";
+        } else {
+            if ($this->isSessionActive()) {
+                $user = $this->isSessionActive();
+                $blocks = $this->BlockDate->getBlocks($user->id);
+
+                $template = array(
+                    'table_open' => '<table class="table table-hover">',
+                );
+
+                $this->table->set_template($template);
+
+                $this->table->set_heading(array(
+                    'Options',
+                    'Block date',
+                    'Start time',
+                    'End time',
+                ));
+
+                foreach ($blocks as &$item) {
+                    $this->table->add_row(array(
+                        '<a class="btn btn-small btn-warning" href="' . site_url('block') . '?edit=' . $item->id . '"><span class="fa fa-pencil"></span></a>'
+                        . form_open('process/deleteblock') .
+                        form_hidden(array('redir' => 'block', 'id' => $item->id)) .
+                        '<button class="btn btn-small btn-danger" type="submit"><span class="fa fa-trash"></span></button>',
+                        $item->basedate,
+                        $item->timestart,
+                        $item->timeend,
+                    ));
+                }
+
+                $blockstable = $this->table->generate();
+
+                $data['photopackstable'] = $blockstable;
+
+                $editid = $this->input->get('edit');
+
+                if (!empty($editid)) {
+                    $edit = $this->BlockDate->getBlock($editid);
+                    if (!empty($edit)) {
+                        $data['edit'] = $edit;
+                    }
+                }
+
+                $this->load->view('block_app_view', $data);
             } else {
                 $this->setMessage('Warning!', 'Login to continue', 'warning');
                 redirect('login');

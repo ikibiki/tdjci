@@ -25,7 +25,7 @@ class UserAccount extends CI_Model {
             $this->dbi->from('user');
             $this->dbi->where('status', 1);
             return $this->dbi->get()->result();
-        }
+    }
 
 
     public function getUserAccount($id) {
@@ -36,14 +36,13 @@ class UserAccount extends CI_Model {
         return $this->dbi->get()->result()[0];
     }
 
-public function getUserInfo($username){
-
+    public function getUserInfo($username) {
         $this->dbi->reset_query();
         $this->dbi->from('user');
         $this->dbi->where('username', $username);
         $this->dbi->where('status', 1);
         return $this->dbi->get()->result()[0];
-}
+    }
 
     public function updateUserInfo($id, $data) {
         $this->dbi->reset_query();

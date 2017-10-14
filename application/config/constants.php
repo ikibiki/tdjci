@@ -94,5 +94,7 @@ define('ROLE', array(
     4 => "CUSTOMER",
 ));
 
-define('STATUS.PHOTO.COMPLETE', 1);
-define('STATUS.PHOTO.IGNORE', 2);
+define('STATUS.PHOTO', array(
+    1 => 'PENDING',
+    2 => 'COMPLETE'
+));

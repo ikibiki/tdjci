@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Children extends CI_Model
+class PhotoPack extends CI_Model
 {
     private $dbi;
 
@@ -15,25 +15,26 @@ class Children extends CI_Model
     public function getAll(){
 
         $this->dbi->reset_query();
-        $this->dbi->from('child');
+        $this->dbi->from('package');
         return $this->dbi->get()->result();
     }
 
-    public function getChildren($userid)
+    public function getPhotoPacks($userid)
     {
         $this->dbi->reset_query();
-        $this->dbi->select('child.id, child.firstname, child.lastname, child.birthday, child.gender, child.dt_created, child.dt_modified');
-        $this->dbi->from('child');
-        $this->dbi->join('children_ref', 'child.id=children_ref.child_id');
-        $this->dbi->where('children_ref.user_id', $userid);
+        $this->dbi->select('package.id, package.imagefilename, package.caption, package.cost, package.currency, package.dt_created, package.dt_modified');
+        $this->dbi->from('package');
+        $this->dbi->join('package_ref', 'package.id=package_ref.user_id');
+        $this->dbi->where('package_ref.user_id', $userid);
         return $this->dbi->get()->result();
     }
 
-    public function getChild($id)
+    public function getPhotoPack($id)
     {
         $this->dbi->reset_query();
-        $this->dbi->from('child');
+        $this->dbi->from('package');
         $this->dbi->where('id', $id);
         return $this->dbi->get()->result()[0];
     }
+
 }
