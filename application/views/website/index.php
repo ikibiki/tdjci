@@ -57,34 +57,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	        <ul>
 	         
 	          <li>
-	            <a href="app/add_booking.php">
+	            <a href="#">
 	              <img src="assets/images/menu-booking.png">
 	              <span>Booking</span>
 	            </a>
 	          </li>
 	          
 	          <li>
-	            <a href="student-registration.php">
+	            <a href="#">
 	              <img src="assets/images/menu-register.png">
 	              <span>Register</span>
 	            </a>
 	          </li>
 	          <li>
-	            <a href="login.php">
+	            <a href="<?php echo base_url('login'); ?>">
 	              <i class="fa fa-sign-in" arial-hidden="true"></i>
 	              <span>Sign In</span>
 	            </a>
 	          </li>
 	          
 	          <li>
-	            <a href="contact.php">
+	            <a href="#">
 	              <img src="assets/images/menu-signup.png">
 	              <span>Contact Us</span>
 	            </a>
 	          </li>
 	          
 	          <li>
-	            <a href="about.php">
+	            <a href="#">
 	              <i class="fa fa-exclamation-circle" arial-hidden="true"></i>
 	              <span>About</span>
 	            </a>

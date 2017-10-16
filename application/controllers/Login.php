@@ -59,7 +59,8 @@ class Login extends CI_Controller
                 return true;
             }
         }
-        return false;
+        //return false;
+		return true;
     }
 
     protected function setMessage($title, $text, $type)
