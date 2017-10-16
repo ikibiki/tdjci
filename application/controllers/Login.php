@@ -26,8 +26,7 @@ class Login extends CI_Controller
 
             $userdata = '';
             if ($this->UserAccount->verifyPassword($this->input->post('password'), $this->input->post('username'))) {
-                $tmp = $this->UserAccount->getUserInfo($this->input->post('username'));
-                $userdata = $tmp;
+                $userdata = $this->UserAccount->getUserInfo($this->input->post('username'));
             }
 
             if ($userdata) {
