@@ -15,24 +15,24 @@ class Children extends CI_Model
     public function getAll(){
 
         $this->dbi->reset_query();
-        $this->dbi->from('child');
+        $this->dbi->from('pet');
         return $this->dbi->get()->result();
     }
 
-    public function getChildren($userid)
+    public function getPets($userid)
     {
         $this->dbi->reset_query();
-        $this->dbi->select('child.id, child.firstname, child.lastname, child.birthday, child.gender, child.dt_created, child.dt_modified');
-        $this->dbi->from('child');
-        $this->dbi->join('children_ref', 'child.id=children_ref.child_id');
-        $this->dbi->where('children_ref.user_id', $userid);
+        $this->dbi->select('pet.id, pet.name, pet.birthday, pet.dt_created, pet.dt_modified');
+        $this->dbi->from('pet');
+        $this->dbi->join('pet_ref', 'pet.id=pet_ref.user_id');
+        $this->dbi->where('pet_ref.user_id', $userid);
         return $this->dbi->get()->result();
     }
 
-    public function getChild($id)
+    public function getPet($id)
     {
         $this->dbi->reset_query();
-        $this->dbi->from('child');
+        $this->dbi->from('pet');
         $this->dbi->where('id', $id);
         return $this->dbi->get()->result()[0];
     }

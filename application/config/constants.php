@@ -87,10 +87,14 @@ defined('EXIT__AUTO_MAX') OR define('EXIT__AUTO_MAX', 125); // highest automatic
 define('WEBSITE_TITLE', 'TDJ Booking');
 define('SYSTEM_TITLE', 'Online Reservation and Booking System');
 
-define('ROLE.ADMIN', 1);
-define('ROLE.STAFF', 2);
-define('ROLE.PHOTOGRAPHER', 3);
-define('ROLE.CUSTOMER', 4);
+define('ROLE', array(
+    1 => "ADMIN",
+    2 => "STAFF",
+    3 => "PHOTOGRAPHER",
+    4 => "CUSTOMER",
+));
 
-define('STATUS.PHOTO.COMPLETE', 1);
-define('STATUS.PHOTO.IGNORE', 2);
+define('STATUS.PHOTO', array(
+    1 => 'PENDING',
+    2 => 'COMPLETE'
+));
