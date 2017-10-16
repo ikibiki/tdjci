@@ -55,6 +55,7 @@ if (!isset($redir)) {
             Login
         </button>
         <button id="btnregshow" type="button" class="btn btn-default btn-lg">Register</button>
+        <a href="<?php echo base_url('');?>" class="btn btn-default btn-lg">Home</a>
     </div>
     <p>&nbsp;</p>
     <footer class="text-center">

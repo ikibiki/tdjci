@@ -39,7 +39,7 @@ class Login extends CI_Controller
             }
         }
         if (empty($redir)) {
-            $redir = '/';
+            $redir = '/users';
         }
 
         redirect($redir);

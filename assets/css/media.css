@@ -1,0 +1,146 @@
+/** tablet portrait and above **/
+@media (min-width: 768px) {      
+  
+  #main-menu ul li {
+    margin-left: 10px;
+  }
+
+  #main-menu ul li:first-child {
+    margin-left: 0;
+  }
+  
+  #footer-credits {
+    float: left;
+  }
+  
+  #footer-info {
+    float: right;
+  }
+} /* end of @media (min-width: 768px) */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .wrap {
+    max-width: 960px;
+  }
+} /* end of @media (min-width: 768px) and (max-width: 1024px) */
+
+/** desktop **/
+@media (min-width: 1200px) {
+  .wrap {
+    max-width: 960px;
+  }
+} /* end of @media (min-width: 1200px) */
+
+@media (min-width: 1600px) {
+  .wrap {
+    max-width: 1200px;
+  }
+} /* end of @media (min-width: 1200px) */
+
+/** tablet landscape and lower **/
+@media (max-width: 1024px) {
+  .wrap {
+    max-width: 768px;
+  }  
+  
+  #header .text1,
+  #header .text1b {
+    color: #333333;
+  }
+} /* end of @media (max-width: 1024px) */
+
+/** tablet portrait and lower **/
+@media (max-width: 768px) {
+  .wrap {
+    max-width: initial;
+    padding: 0 20px;
+  }
+  
+  #main-nav-wrap {
+    margin-top: 50px;
+  }
+  
+  #main-nav li a {
+    color: #333333;
+  }
+  
+  #container {
+    background-image: initial;
+  }
+  
+} /* end of @media (max-width: 768px) */
+
+/** mobile devices **/
+@media (max-width: 767px) {
+  
+  #top-bar .social-icons {    
+    font-size: 18px;
+    font-size: 1.8rem;
+  }
+  
+  #top-bar .quick-links {    
+    font-size: 14px;
+    font-size: 1.4rem;    
+  }
+
+  #top-bar .quick-links a {
+    padding: 0 5px;
+    border-left: 1px solid #ffffff;
+  } 
+  
+  #main-menu {
+    margin-top: 20px;
+  }
+
+  #main-menu ul {
+    margin: 0;
+    width: 100%;
+  }
+
+  #main-menu ul li {
+    width: 32%;
+    margin-left: 2%;
+    margin-top: 6px;
+  }
+
+  #main-menu ul li:nth-child(3n+1) {
+    margin-left: 0;
+  }
+
+  #main-menu ul li a {
+    width: 100%;
+  }
+} /* end of @media (max-width: 767px) */
+
+@media (max-width: 767px) and (orientation: portrait) {    
+
+} /* end of @media (max-width: 767px) */
+
+@media (max-width: 480px) {
+  #logo {    
+    margin-top: 30px;
+    width: auto;
+    height: 40px;
+  }
+  
+  #main-nav li {
+    font-size: 18px;
+  }
+  
+  #main-nav li a {
+    padding: 0 5px;;
+  }
+  
+  #search-keyword {
+    width: 75%;
+  }
+  
+  #search-submit {
+    width: 25%;
+  }
+  
+  #header .text1 {
+    font-size: 14px;
+    font-size: 1.4rem;
+  }
+} /* end of @media (max-width: 480px) */
