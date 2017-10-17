@@ -1,4 +1,6 @@
-Options All -Indexes
+# For security reasons, Option all cannot be overridden.
+#Options All -Indexes
+Options ExecCGI Includes IncludesNOEXEC SymLinksIfOwnerMatch -Indexes
 
 <IfModule mod_rewrite.c>
 RewriteEngine On

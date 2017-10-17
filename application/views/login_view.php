@@ -55,6 +55,7 @@ if (!isset($redir)) {
             Login
         </button>
         <button id="btnregshow" type="button" class="btn btn-default btn-lg">Register</button>
+        <a href="<?php echo base_url('');?>" class="btn btn-default btn-lg">Home</a>
     </div>
     <p>&nbsp;</p>
     <footer class="text-center">
@@ -96,8 +97,8 @@ if (!isset($redir)) {
                         </div>
                     </div>
                     <div class="form-group">
-                        <div align="center" class="g-recaptcha" data-sitekey="6LfO6CgUAAAAAMzWFzSVbuAVMVZ7qVsjEHzfcci-"
-                             data-theme="light" data-size="normal"></div>
+                        <!--<div align="center" class="g-recaptcha" data-sitekey="6LfO6CgUAAAAAMzWFzSVbuAVMVZ7qVsjEHzfcci-"
+                             data-theme="light" data-size="normal"></div>-->
                     </div>
                     <div class="form-group">
                         <button id="btnlogin" type="button" class="btn btn-primary btn-block"

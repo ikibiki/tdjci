@@ -23,6 +23,19 @@ function echoStyles()
     }
 }
 
+function echoStylesWebsite()
+{
+    $css = array(
+        'assets/css/fonts.css',
+        'assets/css/presets.css',
+        'assets/css/style.css',
+        'assets/css/media.css',
+    );
+    foreach ($css as $elem) {
+        echo "<link rel='stylesheet' href='$elem'/>";
+    }
+}
+
 function echoScripts()
 {
     $js = array(
@@ -44,6 +57,23 @@ function echoScripts()
 
         "//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.5/jquery.lazy.min.js",
         "//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.5/jquery.lazy.plugins.min.js",
+    );
+
+    foreach ($js as $elem) {
+        echo "<script src='$elem'></script>";
+    }
+}
+
+function echoScriptsWebsite()
+{
+    $js = array(
+        'assets/js/browser-detect.js',
+        'assets/js/functions.js',
+        'assets/js/holder.js',
+        'assets/js/ie10-viewport-bug-workaround.js',
+        'assets/js/imagesloaded.pkgd.js',
+        'assets/js/main.js?v=0.0.2',
+        'assets/js/skrollr.js',
     );
 
     foreach ($js as $elem) {

@@ -39,7 +39,7 @@ class Login extends CI_Controller
             }
         }
         if (empty($redir)) {
-            $redir = '/';
+            $redir = '/users';
         }
 
         redirect($redir);
@@ -59,7 +59,8 @@ class Login extends CI_Controller
                 return true;
             }
         }
-        return false;
+        //return false;
+		return true;
     }
 
     protected function setMessage($title, $text, $type)
