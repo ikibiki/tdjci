@@ -24,9 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-
-$config['base_url'] = 'http://tdjci';
-
+$config['base_url'] = 'http://tdj.theshiftleft.com';
 
 /*
 |--------------------------------------------------------------------------
