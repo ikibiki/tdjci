@@ -1,5 +1,6 @@
 .DS_Store
-
+error.log
+php_errors.log
 application/cache/*
 !application/cache/index.html
 
